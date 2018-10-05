@@ -1,0 +1,55 @@
+<form>
+								
+								<table bgcolor="white" width="100%" border="1" style="float:left" frame="vsides"> 
+								<tr>
+										<th><center><b> Bil. </b></th>
+										<th><center><b> Nama </b></th>
+										<th><center><b> Kad Pengenalan </b></th>
+										<th><center><b> No. Fail </b></th> 
+										<th><center><b> Kedudukan Fail </b></th> 
+										<th><center><b> Kedudukan Buku Khidmat </b></th> 
+										<th><center><b> Catatan </b></th> 
+								</tr>		
+								
+								
+								
+								<?php 
+								
+								define('DB_HOST', 'localhost'); 
+								define('DB_NAME', 'getdata'); 
+								define('DB_USER','root'); 
+								define('DB_PASSWORD',''); 
+
+								$con=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysql_error()); 
+								$db=mysql_select_db(DB_NAME,$con) or die("Failed to connect to MySQL: " . mysql_error()); 
+								
+								//session_start();
+								$data = mysql_query("Select * from data ") or die("Database Error");
+								$counter=1;
+								//data looping
+								while($row = mysql_fetch_array($data, MYSQL_BOTH))
+								{ 
+								?>
+								
+								<tr>
+									<td> <?php echo $counter; ?> .</td>
+									<td><center><?php echo $row['name'];?></td>
+									<td><center><?php echo $row['ic'];?></td>
+									<td><center><?php echo $row['num_file'];?></td>
+									<td><center><?php echo $row['kedudukan_file'];?></td>
+									<td><center><?php echo $row['kedudukan_buku_khidmat'];?></td>
+									<td><center><?php echo $row['catatan'];?></td>
+								
+										
+									
+								</tr>
+								
+								<?php  // looping close
+								$counter++;
+								}?>
+							 
+								</table>
+							
+							
+							
+							</form>
